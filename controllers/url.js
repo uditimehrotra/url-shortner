@@ -28,7 +28,22 @@ async function handleGetAnalytics(req,res){
     })
 }
 
+async function handleGetRedirectedURL(req,res){
+    const shortId = req.params.shortId;
+    const entry = await URL.findOneAndUpdate({
+        shortId
+    },{$push:
+        {
+            visitHistory: {
+                timeStamps: Date.now()
+            },
+        }
+    });
+    res.redirect(entry.redirectedURL);
+}
+
 module.exports ={
     handleGenerateNewShortURL,
     handleGetAnalytics,
+    handleGetRedirectedURL,
 }

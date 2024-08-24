@@ -11,9 +11,10 @@ async function handleGenerateNewShortURL(req,res){
             shortId: shortID,
             redirectedURL: body.url,  // Fix the typo here
             visitHistory: [],
+            createdBy: req.user._id,
         });
-
-        return res.json({ id: shortID });
+        return res.render('home',{ id: shortID });
+      //  return res.json({ id: shortID });
     } catch (error) {
         console.error('Error generating short URL', error);
         return res.status(500).send({ message: 'Internal server error' });

@@ -28,5 +28,5 @@ app.use("/user",userRoute);
 // });
 
 app.use("/url",restrictTo(["NORMAL","ADMIN"]),urlRoute);
-
+app.use("/discord",urlRoute);
 app.listen(PORT,()=> console.log(`server started`));
